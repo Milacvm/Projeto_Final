@@ -1,9 +1,7 @@
 package com.educandoweb.course.entities;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -15,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -35,9 +32,6 @@ public class User implements UserDetails {
 	private String email;
 	private String phone;
 	private String password;
-	
-	@OneToMany(mappedBy = "client")
-	private List<Order> orders = new ArrayList<>();
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "tb_user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -93,11 +87,6 @@ public class User implements UserDetails {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-
-	public List<Order> getOrders() {
-		return orders;
 	}
 	
 	public Set<Role> getRoles() {
