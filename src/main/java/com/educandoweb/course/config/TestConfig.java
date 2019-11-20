@@ -9,9 +9,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.educandoweb.course.entities.Comment;
 import com.educandoweb.course.entities.Post;
 import com.educandoweb.course.entities.Role;
 import com.educandoweb.course.entities.User;
+import com.educandoweb.course.repositories.CommentRepository;
 import com.educandoweb.course.repositories.PostRepository;
 import com.educandoweb.course.repositories.RoleRepository;
 import com.educandoweb.course.repositories.UserRepository;
@@ -31,6 +33,9 @@ public class TestConfig implements CommandLineRunner {
 
 	@Autowired
 	private PostRepository postRepository;
+	
+	@Autowired
+	private CommentRepository commentRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -55,5 +60,10 @@ public class TestConfig implements CommandLineRunner {
 		Post p2 = new Post(null, Instant.parse("2019-06-20T19:53:07Z"), "Hoje", "Que o dia seja belo e o hoje seja produtivo", u2);
 
 		postRepository.saveAll(Arrays.asList(p1, p2));
+		
+		Comment c1 = new Comment(null, Instant.parse("2019-06-20T19:53:07Z"), "Mamãe, te amo", p1, u2);
+		Comment c2 = new Comment(null, Instant.parse("2019-06-20T19:53:07Z"), "Venha 2020", p2, u1);
+		
+		commentRepository.saveAll(Arrays.asList(c1, c2));
 	}
 }
