@@ -56,8 +56,8 @@ public class TestConfig implements CommandLineRunner {
 
 		userRepository.saveAll(Arrays.asList(u1, u2));
 
-		Post p1 = new Post(null, Instant.parse("2019-06-20T19:53:07Z"), "Bom dia!", "#Boratrabalhar", u1);
-		Post p2 = new Post(null, Instant.parse("2019-06-20T19:53:07Z"), "Hoje", "Que o dia seja belo e o hoje seja produtivo", u2);
+		Post p1 = new Post(null, Instant.parse("2019-06-20T19:53:07Z"), "Bom dia!", "#Boratrabalhar");
+		Post p2 = new Post(null, Instant.parse("2019-06-20T19:53:07Z"), "Hoje", "Que o dia seja belo e o hoje seja produtivo");
 
 		postRepository.saveAll(Arrays.asList(p1, p2));
 		
