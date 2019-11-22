@@ -33,13 +33,13 @@ public class Post implements Serializable {
 	public Post() {
 	}
 
-	public Post(Long id, Instant moment, String title, String body) {
+	public Post(Long id, Instant moment, String title, String body, User author) {
 		super();
 		this.id = id;
 		this.moment = moment;
 		this.title = title;
 		this.body = body;
-
+		this.author = author;
 	}
 
 	public Long getId() {

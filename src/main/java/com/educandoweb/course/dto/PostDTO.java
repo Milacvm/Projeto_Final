@@ -4,9 +4,8 @@ import java.io.Serializable;
 import java.time.Instant;
 
 import com.educandoweb.course.entities.Post;
-import com.educandoweb.course.services.validation.UserUpdateValid;
+import com.educandoweb.course.entities.User;
 
-@UserUpdateValid
 public class PostDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -17,13 +16,16 @@ public class PostDTO implements Serializable {
 	private String title;
 
 	private String body;
+	
+	private Long authorId;
 
-	public PostDTO(Long id, Instant moment, String title, String body) {
+	public PostDTO(Long id, Instant moment, String title, String body, Long authorId) {
 		super();
 		this.id = id;
 		this.moment = moment;
 		this.title = title;
 		this.body = body;
+		this.setAuthorId(authorId);
 	}
 	
 	public PostDTO(){
@@ -34,6 +36,7 @@ public class PostDTO implements Serializable {
 		this.moment = entity.getMoment();
 		this.title = entity.getTitle();
 		this.body = entity.getBody();
+		this.setAuthorId(entity.getAuthor().getId());
 	}
 
 	public Long getId() {
@@ -67,9 +70,19 @@ public class PostDTO implements Serializable {
 	public void setBody(String body) {
 		this.body = body;
 	}
-	
+
+
+	public Long getAuthorId() {
+		return authorId;
+	}
+
+	public void setAuthorId(Long authorId) {
+		this.authorId = authorId;
+	}
+		
 	public Post toEntity() {
-		return new Post(id, moment, title, body);
+		User author = new User(authorId, null, null, null, null);
+		return new Post(id, moment, title, body, author);
 	
     }
 }
