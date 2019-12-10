@@ -32,6 +32,11 @@ public class Comment implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "author_id")
 	private User author;
+	
+
+	public Comment() {
+		
+	}
 
 	public Comment(Long id, Instant moment, String text, Post post, User author) {
 		super();
