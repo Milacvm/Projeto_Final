@@ -41,11 +41,11 @@ public class PostResource {
 
 	@PreAuthorize("hasAnyRole('ADMIN','MEMBER')")
 	@GetMapping(value = "/user/{userId}")
-	public ResponseEntity<PostDTO> findById(@PathVariable Long id) {
-		PostDTO dto = service.findById(id);
+	public ResponseEntity<PostDTO> findById(@PathVariable Long userId) {
+		PostDTO dto = service.findById(userId);
 		return ResponseEntity.ok().body(dto);
 	}
-
+	@PreAuthorize("hasAnyRole('ADMIN','MEMBER')")
 	@GetMapping(value = "/{id}/comments")
 	public ResponseEntity<List<CommentDTO>> findComments(@PathVariable Long id) {
 		List<CommentDTO> list = service.findComments(id);

@@ -39,7 +39,6 @@ public class PostService {
 	}
 
 	public PostDTO findById(Long id) {
-		authService.validateSelfOrAdmin(id);
 		Optional<Post> obj = repository.findById(id);
 		Post entity = obj.orElseThrow(() -> new ResourceNotFoundException(id));
 		return new PostDTO(entity);
